@@ -13,65 +13,39 @@ def read_jsonl(filename):
     with open(path) as f:
         return [json.loads(line) for line in f]
 
-# -------------------------------
-# Root
-# -------------------------------
 @app.get("/")
 def root():
     return {"message": "Hospital Realtime AI is running"}
 
-# -------------------------------
-# All hospital status
-# -------------------------------
 @app.get("/hospitals")
 def hospitals():
     return read_jsonl("output.jsonl")
 
-# -------------------------------
-# Best hospital (ICU > 0)
-# -------------------------------
 @app.get("/best-hospital")
 def best_hospital():
-    return read_jsonl("best_hospital.jsonl")
+    data = read_jsonl("best_hospital.jsonl")
+    return data[:5]
 
-# -------------------------------
-# Nearby hospital
-# -------------------------------
 @app.get("/nearby")
 def nearby(lat: float = Query(...), lon: float = Query(...)):
-    hospitals = read_jsonl("nearby_hospitals.jsonl")
+    data = read_jsonl("nearby_hospitals.jsonl")
 
-    if not hospitals:
+    if not data:
         return {"message": "No hospital data available"}
 
-    hospitals = [h for h in hospitals if h.get("icu", 0) > 0]
-
-    hospitals.sort(
-        key=lambda h: (h["latitude"] - lat) ** 2 + (h["longitude"] - lon) ** 2
+    data.sort(
+        key=lambda r: (r["latitude"] - lat) ** 2 + (r["longitude"] - lon) ** 2
     )
+    return data[:5]
 
-    if not hospitals:
-        return {"message": "No nearby hospitals with ICU"}
-
-    return hospitals[0]
-
-# -------------------------------
-# ICU severity
-# -------------------------------
 @app.get("/severity")
 def severity():
     return read_jsonl("severity_score.jsonl")
 
-# -------------------------------
-# ICU trend
-# -------------------------------
-@app.get("/icu-trend")
-def icu_trend():
+@app.get("/trend")
+def trend():
     return read_jsonl("icu_trend.jsonl")
 
-# -------------------------------
-# Auto escalation
-# -------------------------------
-@app.get("/auto-escalation")
-def auto_escalation():
+@app.get("/alerts")
+def alerts():
     return read_jsonl("auto_escalation.jsonl")
