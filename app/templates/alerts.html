@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Critical Alerts</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🚨 Emergency Alerts</div>
+    <div class="nav-links">
+        <a href="/">Dashboard</a>
+        <a href="/hospitals-ui">Hospitals</a>
+        <a href="/nearby-ui">Nearby</a>
+        <a href="/assistant-ui">AI Assistant</a>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+    <h1 class="page-title">🚨 Live Hospital Alerts</h1>
+    <p class="page-subtitle">
+        Real-time ICU capacity warnings and emergency recommendations
+    </p>
+
+    <!-- CRITICAL ALERT -->
+    <div class="alert-card critical">
+        <h3>🔴 ICU Capacity Critical</h3>
+        <p>
+            <strong>Green Care Hospital</strong> has reached
+            <strong>maximum ICU capacity</strong>.
+        </p>
+        <p class="recommendation">
+            👉 Immediate Action: Divert patients to
+            <strong>Apollo Clinic</strong>
+        </p>
+    </div>
+
+    <!-- WARNING ALERT -->
+    <div class="alert-card warning">
+        <h3>🟠 High Load Warning</h3>
+        <p>
+            <strong>City Hospital</strong> is experiencing unusually
+            high patient inflow.
+        </p>
+        <p class="recommendation">
+            👉 Monitor closely and prepare for escalation.
+        </p>
+    </div>
+
+    <a href="/" class="btn secondary">← Back to Dashboard</a>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    Powered by FastAPI · Real-time Emergency Intelligence
+</div>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Hospitals | Hospital Realtime AI</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #f4f8ff;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 30px 0;
+        }
+
+        h1 {
+            color: #0b5ed7;
+            margin-bottom: 20px;
+        }
+
+        .hospital-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            background: #e7f1ff;
+            color: #0b5ed7;
+        }
+
+        .back {
+            margin-top: 30px;
+            display: inline-block;
+            text-decoration: none;
+            background: #0b5ed7;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🏥 All Hospitals</h1>
+
+    <div class="hospital-grid">
+        <div class="card">
+            <div class="name">City Hospital</div>
+            <span class="badge">Severity: Low</span>
+        </div>
+
+        <div class="card">
+            <div class="name">Green Care</div>
+            <span class="badge">Severity: High</span>
+        </div>
+
+        <div class="card">
+            <div class="name">Apollo Clinic</div>
+            <span class="badge">Severity: Medium</span>
+        </div>
+    </div>
+
+    <a class="back" href="/">⬅ Back to Dashboard</a>
+</div>
+
+</body>
+</html>

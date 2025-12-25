@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Medical Assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <h1>🤖 AI Medical Assistant</h1>
+  <div>
+    <a href="/">Dashboard</a>
+    <a href="/hospitals-ui">Hospitals</a>
+    <a href="/nearby-ui">Nearby</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Ask the AI</h2>
+    <p>
+      Ask about ICU availability, hospital safety,
+      or emergency routing.
+    </p>
+
+    <div id="chat-box" style="margin-bottom:20px;"></div>
+
+    <div style="display:flex; gap:10px;">
+      <input id="question"
+             placeholder="Type your question..."
+             style="flex:1;padding:14px;border-radius:10px;border:1px solid #ccc;">
+      <button class="btn" onclick="send()">Send</button>
+    </div>
+
+    <br>
+    <a href="/" class="btn secondary">← Back to Dashboard</a>
+  </div>
+
+</div>
+
+<div class="footer">
+  Powered by FastAPI · AI
+</div>
+
+<script>
+async function send() {
+  const q = document.getElementById("question").value;
+  if (!q) return;
+
+  document.getElementById("chat-box").innerHTML +=
+    `<p><strong>You:</strong> ${q}</p>`;
+
+  const res = await fetch("/chat", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({message: q})
+  });
+
+  const data = await res.json();
+
+  document.getElementById("chat-box").innerHTML +=
+    `<p><strong>AI:</strong> ${data.reply}</p>`;
+
+  document.getElementById("question").value = "";
+}
+</script>
+
+</body>
+</html>

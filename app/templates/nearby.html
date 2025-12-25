@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nearby Hospitals</title>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/static/style.css">
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+  </script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">🏥 Hospital Realtime AI</div>
+  <div class="nav-links">
+    <a href="/">Dashboard</a>
+    <a href="/hospitals-ui">Hospitals</a>
+    <a href="/assistant-ui">AI Assistant</a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <h1 class="page-title">📍 Nearby Hospitals</h1>
+  <p class="page-subtitle">
+    Distance-based hospital recommendations using live data
+  </p>
+
+  <div class="nearby-layout">
+
+    <!-- LEFT: LIST -->
+    <div class="nearby-list" id="hospital-list">
+      <!-- JS will inject cards here -->
+      <a href="/" class="btn secondary">← Back to Dashboard</a>
+    </div>
+
+    <!-- RIGHT: MAP -->
+    <div class="map-card">
+      <div id="map"></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  Powered by FastAPI · AI · Hospital Realtime Intelligence
+</div>
+
+<!-- SCRIPT -->
+<script>
+  const userLat = 12.97;
+  const userLon = 77.59;
+
+  // Initialize map
+  const map = L.map("map").setView([userLat, userLon], 13);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap contributors"
+  }).addTo(map);
+
+  // User marker
+  L.marker([userLat, userLon])
+    .addTo(map)
+    .bindPopup("📍 Your Location")
+    .openPopup();
+
+  // Fetch nearby hospitals
+  fetch(`/nearby?lat=${userLat}&lon=${userLon}`)
+    .then(res => res.json())
+    .then(data => {
+      const list = document.getElementById("hospital-list");
+
+      data.forEach(h => {
+        // Map marker
+        L.marker([h.lat, h.lon])
+          .addTo(map)
+          .bindPopup(
+            `<b>${h.name}</b><br>
+             Distance: ${h.distance_km} km`
+          );
+
+        // Severity label
+        let severityClass = "low";
+        let severityText = "Low Severity";
+
+        if (h.severity >= 4) {
+          severityClass = "high";
+          severityText = "High Severity";
+        } else if (h.severity >= 3) {
+          severityClass = "medium";
+          severityText = "Medium Severity";
+        }
+
+        // Card
+        const card = document.createElement("div");
+        card.className = "nearby-card";
+        card.innerHTML = `
+          <h3>${h.name}</h3>
+          <p class="meta">Distance: <strong>${h.distance_km} km</strong></p>
+          <span class="badge ${severityClass}">${severityText}</span>
+        `;
+
+        list.insertBefore(card, list.lastElementChild);
+      });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+/* =========================
+   GLOBAL
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, sans-serif;
+  transition: all 0.25s ease;
+}
+
+body {
+  background: linear-gradient(180deg, #f4f8ff, #eef3fb);
+  color: #111827;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+  background: linear-gradient(90deg, #1a73e8, #2563eb);
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 22px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+/* =========================
+   OVERVIEW
+========================= */
+.overview {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  margin-bottom: 50px;
+}
+
+.overview h1 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.overview p {
+  color: #4b5563;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* =========================
+   CARD GRID
+========================= */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 20px 35px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 50px rgba(0,0,0,0.12);
+}
+
+.card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn {
+  padding: 14px 22px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #1a73e8, #2563eb);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
+.btn.secondary {
+  background: linear-gradient(135deg, #eef2ff, #dbeafe);
+  color: #1e40af;
+  border: 1px solid rgba(30,64,175,0.15);
+  box-shadow: 0 6px 16px rgba(30,64,175,0.15);
+}
+
+.btn.secondary:hover {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  transform: translateY(-1px);
+}
+
+/* =========================
+   NEARBY PAGE
+========================= */
+.page-title {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.page-subtitle {
+  color: #6b7280;
+  margin-bottom: 35px;
+}
+
+.nearby-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
+}
+
+.nearby-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.nearby-card {
+  background: white;
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+.meta {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* =========================
+   BADGES
+========================= */
+.badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.low { background: #dcfce7; color: #166534; }
+.medium { background: #fef9c3; color: #854d0e; }
+.high { background: #fee2e2; color: #991b1b; }
+
+/* =========================
+   MAP
+========================= */
+#map {
+  width: 100%;
+  height: 360px;
+  border-radius: 16px;
+}
+
+/* =========================
+   ALERTS
+========================= */
+.alert-card {
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  color: white;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.critical {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  animation: blink 1.4s infinite;
+}
+
+.warning {
+  background: linear-gradient(135deg, #f59e0b, #b45309);
+  animation: pulse 2s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.65; }
+  100% { opacity: 1; }
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.02); }
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  text-align: center;
+  margin: 70px 0 30px;
+  color: #6b7280;
+  font-size: 14px;
+}
